@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iphone-home-screen-layout"
+version = "0.1.0"
+description = "Agent skill and macOS cfgutil layout CLI"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+iphone-layout = "iphone_layout.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["skills/iphone-home-screen-layout"]
+include = ["iphone_layout*"]

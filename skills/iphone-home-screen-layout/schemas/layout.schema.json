@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "iPhone Layout v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "dock",
+    "pages"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "dock": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/icon"
+          },
+          {
+            "$ref": "#/$defs/folder"
+          }
+        ]
+      }
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 15,
+      "items": {
+        "type": "array",
+        "maxItems": 24,
+        "items": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/icon"
+            },
+            {
+              "$ref": "#/$defs/folder"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "icon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "const": "icon"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "\\S"
+        }
+      }
+    },
+    "folder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "pages"
+      ],
+      "properties": {
+        "type": {
+          "const": "folder"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "pages": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 15,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 9,
+            "items": {
+              "$ref": "#/$defs/icon"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$comment": "Global ID uniqueness and source/target inventory conservation are enforced by Python core."
+}

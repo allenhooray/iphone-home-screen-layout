@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+.iphone-layout-backups/
+current.json
+plan.json
+backups/
+build/
+dist/
